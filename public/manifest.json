@@ -2,7 +2,7 @@
     "name": "Foody Tracker",
     "short_name": "Foody",
     "description": "Track and rate your favorite foods from different restaurants.",
-    "start_url": "./",
+    "start_url": "./index.html",
     "display": "standalone",
     "background_color": "#ffffff",
     "theme_color": "#007bff",
