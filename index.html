@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foody Tracker</title>
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="app.js"></script>
+</head>
+<body>
+    <div id="login-view" class="view">
+        <h1>Welcome to Foody Tracker</h1>
+        <p id="welcome-message">Please log in or sign up to continue.</p>
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <button id="login-btn">Login</button>
+        <button id="register-btn">Register</button>
+        <button id="logout-btn" style="display: none;">Logout</button>
+    </div>
+
+    <div id="food-input-view" class="view" style="display: none;">
+        <h1>Track Your Food</h1>
+        <p>Logged in as: <span id="user-email"></span></p>
+        <input type="text" id="food-name" placeholder="Food Name">
+        <input type="text" id="restaurant" placeholder="Restaurant Name">
+        <label>Like: <input type="checkbox" id="like"></label>
+        <label>Rating:
+            <select id="rating">
+                <option value="1">1 Star</option>
+                <option value="2">2 Stars</option>
+                <option value="3">3 Stars</option>
+                <option value="4">4 Stars</option>
+                <option value="5">5 Stars</option>
+            </select>
+        </label>
+        <button id="add-food">Add Food</button>
+        <h2>Food List</h2>
+        <ul id="food-list"></ul>
+        <button id="logout-btn-food">Logout</button>
+    </div>
+</body>
+</html>
