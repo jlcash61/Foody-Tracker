@@ -36,25 +36,81 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function loadFoodList() {
         const foodList = document.getElementById("food-list");
-        foodList.innerHTML = ""; // Clear existing list
+        const foodNamesList = document.getElementById("food-names");
+        const restaurantNamesList = document.getElementById("restaurant-names");
+    
+        const foodFilter = document.getElementById("food-filter");
+        const restaurantFilter = document.getElementById("restaurant-filter");
+        const clearFiltersBtn = document.getElementById("clear-filters");
+    
+        foodList.innerHTML = "";
+        foodNamesList.innerHTML = "";
+        restaurantNamesList.innerHTML = "";
     
         const foodCollection = collection(db, "users", auth.currentUser.uid, "foods");
     
-        // Unsubscribe from any previous listener before adding a new one
         if (unsubscribeFoodList) {
             unsubscribeFoodList(); 
         }
     
         unsubscribeFoodList = onSnapshot(foodCollection, (snapshot) => {
-            foodList.innerHTML = ""; // Clear again to avoid duplicates
+            let foodSet = new Set();
+            let restaurantSet = new Set();
+            let foodArray = [];
+    
             snapshot.forEach((doc) => {
                 const food = doc.data();
-                const li = document.createElement("li");
-                li.innerText = `${food.name} from ${food.restaurant} - ${food.liked ? "Liked" : "Disliked"} - ${food.rating} Stars`;
-                foodList.appendChild(li);
+                foodSet.add(food.name);
+                restaurantSet.add(food.restaurant);
+                foodArray.push({ id: doc.id, ...food });
             });
+    
+            // Populate datalists
+            foodNamesList.innerHTML = [...foodSet].map(name => `<option value="${name}">`).join("");
+            restaurantNamesList.innerHTML = [...restaurantSet].map(restaurant => `<option value="${restaurant}">`).join("");
+    
+            // Function to render sorted list based on user selection
+            function renderFoodList() {
+                const selectedFood = foodFilter.value.trim();
+                const selectedRestaurant = restaurantFilter.value.trim();
+    
+                let filteredFood = foodArray;
+    
+                if (selectedFood) {
+                    filteredFood = filteredFood.filter(item => item.name.toLowerCase() === selectedFood.toLowerCase());
+                }
+    
+                if (selectedRestaurant) {
+                    filteredFood = filteredFood.filter(item => item.restaurant.toLowerCase() === selectedRestaurant.toLowerCase());
+                }
+    
+                // Sort by rating (best to worst)
+                filteredFood.sort((a, b) => b.rating - a.rating);
+    
+                // Display filtered and sorted food list
+                foodList.innerHTML = "";
+                filteredFood.forEach((food) => {
+                    const li = document.createElement("li");
+                    li.innerText = `${food.name} from ${food.restaurant} - ${food.liked ? "Liked" : "Disliked"} - ${food.rating} Stars`;
+                    foodList.appendChild(li);
+                });
+            }
+    
+            // Listen for changes in filters
+            foodFilter.addEventListener("input", renderFoodList);
+            restaurantFilter.addEventListener("input", renderFoodList);
+            clearFiltersBtn.addEventListener("click", () => {
+                foodFilter.value = "";
+                restaurantFilter.value = "";
+                renderFoodList();
+            });
+    
+            // Initial render
+            renderFoodList();
         });
     }
+    
+    
     
     
     onAuthStateChanged(auth, (user) => {

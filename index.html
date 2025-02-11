@@ -21,8 +21,12 @@
     <div id="food-input-view" class="view" style="display: none;">
         <h1>Track Your Food</h1>
         <p>Logged in as: <span id="user-email"></span></p>
-        <input type="text" id="food-name" placeholder="Food Name">
-        <input type="text" id="restaurant" placeholder="Restaurant Name">
+        <input type="text" id="food-name" placeholder="Food Name" list="food-names">
+        <datalist id="food-names"></datalist>
+
+        <input type="text" id="restaurant" placeholder="Restaurant Name" list="restaurant-names">
+        <datalist id="restaurant-names"></datalist>
+
         <label>Like: <input type="checkbox" id="like"></label>
         <label>Rating:
             <select id="rating">
@@ -35,7 +39,16 @@
         </label>
         <button id="add-food">Add Food</button>
         <h2>Food List</h2>
-        <ul id="food-list"></ul>
+<label>Filter by Food:
+    <input type="text" id="food-filter" list="food-names">
+</label>
+<label>Filter by Restaurant:
+    <input type="text" id="restaurant-filter" list="restaurant-names">
+</label>
+<button id="clear-filters">Clear Filters</button>
+
+<ul id="food-list"></ul>
+
         <button id="logout-btn-food">Logout</button>
     </div>
 </body>
