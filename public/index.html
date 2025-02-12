@@ -11,8 +11,6 @@
     <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
-    
-
 </head>
 <body>
     <div id="login-view" class="view">
@@ -20,43 +18,56 @@
         <p id="welcome-message">Please log in or sign up to continue.</p>
         <input type="email" id="email" placeholder="Email">
         <input type="password" id="password" placeholder="Password">
-        <button id="login-btn">Login</button>
-        <button id="register-btn">Register</button>
-        <button id="logout-btn" style="display: none;">Logout</button>
+        <div class="buttons">
+            <button id="login-btn">Login</button>
+            <button id="register-btn">Register</button>
+        </div>
+        <button id="logout-btn" style="display: none;">Log-out</button>
     </div>
 
     <div id="food-input-view" class="view" style="display: none;">
         <h1>Track Your Food</h1>
         <p>Logged in as: <span id="user-email"></span></p>
-        <input type="text" id="food-name" placeholder="Food Name" list="food-names">
-        <datalist id="food-names"></datalist>
+        
 
         <input type="text" id="restaurant" placeholder="Restaurant Name" list="restaurant-names">
         <datalist id="restaurant-names"></datalist>
+        
+        <input type="text" id="food-name" placeholder="Food Name" list="food-names">
+        <datalist id="food-names"></datalist>
+        <br>
 
-        <label>Like: <input type="checkbox" id="like"></label>
-        <label>Rating:
-            <select id="rating">
-                <option value="1">1 Star</option>
-                <option value="2">2 Stars</option>
-                <option value="3">3 Stars</option>
-                <option value="4">4 Stars</option>
-                <option value="5">5 Stars</option>
-            </select>
-        </label>
+        <div class="input-group">
+            <label>Like: <input type="checkbox" id="like" class="large-checkbox"></label>
+            <label>Rating:
+                <select id="rating" class="large-select">
+                    <option value="1">1 Star</option>
+                    <option value="2">2 Stars</option>
+                    <option value="3">3 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="5">5 Stars</option>
+                </select>
+            </label>
+        </div>
+        
         <button id="add-food">Add Food</button>
         <h2>Food List</h2>
-<label>Filter by Food:
-    <input type="text" id="food-filter" list="food-names">
-</label>
-<label>Filter by Restaurant:
-    <input type="text" id="restaurant-filter" list="restaurant-names">
-</label>
-<button id="clear-filters">Clear Filters</button>
+        
+        
+        <label>Filter by Restaurant:
+            <input type="text" id="restaurant-filter" list="restaurant-names">
+        </label>
+        <br>
+        <label>Filter by Food:
+            <input type="text" id="food-filter" list="food-names">
+        </label>
+        <button id="clear-filters">Clear Filters</button>
 
-<ul id="food-list"></ul>
+        <ul id="food-list"></ul>
 
-        <button id="logout-btn-food">Logout</button>
+        <div class="buttons">
+            <button id="logout-btn-food">Logout</button>
+        </div>
     </div>
 </body>
 </html>

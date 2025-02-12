@@ -88,12 +88,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 filteredFood.sort((a, b) => b.rating - a.rating);
     
                 // Display filtered and sorted food list
-                foodList.innerHTML = "";
-                filteredFood.forEach((food) => {
-                    const li = document.createElement("li");
-                    li.innerText = `${food.name} from ${food.restaurant} - ${food.liked ? "Liked" : "Disliked"} - ${food.rating} Stars`;
-                    foodList.appendChild(li);
-                });
+foodList.innerHTML = "";
+filteredFood.forEach((food) => {
+    const li = document.createElement("li");
+    li.classList.add("food-item"); // Add class for styling
+    li.innerHTML = `
+        <div class="food-column restaurant">${food.restaurant}</div>
+        <div class="food-column name">${food.name}</div>
+        <div class="food-column liked">${food.liked ? "Liked" : "Disliked"}</div>
+        <div class="food-column rating">${food.rating} Stars</div>
+    `;
+    foodList.appendChild(li);
+});
+
             }
     
             // Listen for changes in filters

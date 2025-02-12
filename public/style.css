@@ -1,20 +1,109 @@
 body {
     font-family: Arial, sans-serif;
+    font-size: large;
     margin: 0;
     padding: 0;
     height: 100vh;
     display: flex;
     justify-content: center; /* Centers horizontally */
-    align-items: center; /* Centers vertically */
-    background-color: #f8f9fa;
+    align-items: flex-start; /* Fix: 'top' is invalid, use 'flex-start' */
+    background: url("images/foody_bg2.png") no-repeat center center fixed;
+    background-size: cover;
 }
 
-#login {
-    background: white;
+.view {
+    background: rgba(255, 255, 255, 0.6); /* Transparent white */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     width: 90%;
-    max-width: 400px;
+    max-width: 800px;
     text-align: center;
+}
+
+.view input {
+    font-size: medium;
+    width: auto; 
+    text-align: center;
+    padding: 5px;
+    margin: 5px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.buttons {
+    font-size: large;
+    display: flex;
+    justify-content: center; /* Centers buttons horizontally */
+    gap: 10px; /* Adds space between buttons */
+}
+
+.buttons button {
+    flex: 1; /* Makes both buttons equal width */
+    max-width: 150px; /* Optional: Limit button width */
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #007bff;
+    color: white;
+    transition: background 0.3s;
+}
+
+.buttons button:hover {
+    background-color: #0056b3;
+}
+
+#food-list {
+    list-style-type: none;
+    padding: 0;
+    width: 100%;
+    max-width: 600px; /* Adjust width as needed */
+    margin: 0 auto; /* Centers the entire list */
+}
+
+.food-item {
+    display: flex;
+    justify-content: space-between; /* Ensures spacing between columns */
+    align-items: center; /* Centers content vertically */
+    padding: 10px;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    width: 90%; /* Adjust width for centering */
+    margin: 0 auto; /* Centers each row */
+    border-radius: 5px; /* Optional: Gives a softer look */
+}
+
+.food-column {
+    flex: 1; /* Makes each column take equal space */
+    text-align: left;
+    padding: 5px;
+}
+
+.food-column.name {
+    text-align: left;
+}
+
+.food-column.restaurant {
+    font-weight: bold;
+    text-align: left;
+}
+
+.food-column.liked {
+    text-align: center;
+}
+
+.food-column.rating {
+    text-align: right;
+    font-weight: bold;
+}
+
+.large-checkbox {
+    transform: scale(1.5); /* Makes checkbox larger */
+    margin-left: 5px;
+}
+
+.large-select {
+    font-size: large;
+    padding: 5px;
 }
