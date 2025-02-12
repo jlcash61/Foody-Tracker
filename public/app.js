@@ -105,7 +105,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     li.innerHTML = `
                         <div class="food-column restaurant">${food.restaurant}</div>
                         <div class="food-column name">${food.name}</div>
-                        <div class="food-column liked">${food.liked ? "Liked" : "Disliked"}</div>
+                        
                         <div class="food-column rating">${food.rating} Stars</div>
                     `;
                     foodList.appendChild(li);
@@ -154,7 +154,7 @@ document.addEventListener("DOMContentLoaded", () => {
     document.getElementById("add-food").addEventListener("click", async () => {
         const name = document.getElementById("food-name").value;
         const restaurant = document.getElementById("restaurant").value;
-        const liked = document.getElementById("like").checked;
+        
         const rating = document.getElementById("rating").value;
 
         if (!name || !restaurant) {
@@ -166,14 +166,14 @@ document.addEventListener("DOMContentLoaded", () => {
             await addDoc(collection(db, "users", auth.currentUser.uid, "foods"), {
                 name,
                 restaurant,
-                liked,
+                
                 rating,
                 timestamp: new Date()
             });
             alert("Food added!");
             document.getElementById("food-name").value = "";
             document.getElementById("restaurant").value = "";
-            document.getElementById("like").checked = false;
+            
             document.getElementById("rating").value = "1";
         } catch (error) {
             alert("Error adding food: " + error.message);

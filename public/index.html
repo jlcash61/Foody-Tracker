@@ -40,9 +40,10 @@
         <br>
 
         <div class="input-group">
-            <label>Like: <input type="checkbox" id="like" class="large-checkbox"></label>
+            
             <label>Rating:
                 <select id="rating" class="large-select">
+                    <option value="0">Dislike</option>
                     <option value="1">1 Star</option>
                     <option value="2">2 Stars</option>
                     <option value="3">3 Stars</option>
@@ -52,7 +53,9 @@
             </label>
         </div>
 
+        <div class="buttons">
         <button id="add-food">Add Food</button>
+        </div>
         <h2>Food List</h2>
 
 
@@ -63,7 +66,9 @@
         <label>Filter by Food:
             <input type="text" id="food-filter" list="food-names">
         </label>
+        <div class="buttons">
         <button id="clear-filters">Clear Filters</button>
+        </div>
 
         <div id="food-list-container" style="display: none;">
             <ul id="food-list"></ul>
