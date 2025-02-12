@@ -5,14 +5,17 @@ body {
     padding: 0;
     height: 100vh;
     display: flex;
-    justify-content: center; /* Centers horizontally */
-    align-items: flex-start; /* Fix: 'top' is invalid, use 'flex-start' */
+    justify-content: center;
+    /* Centers horizontally */
+    align-items: flex-start;
+    /* Fix: 'top' is invalid, use 'flex-start' */
     background: url("images/foody_bg2.png") no-repeat center center fixed;
     background-size: cover;
 }
 
 .view {
-    background: rgba(255, 255, 255, 0.6); /* Transparent white */
+    background: rgba(255, 255, 255, 0.6);
+    /* Transparent white */
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -23,7 +26,7 @@ body {
 
 .view input {
     font-size: medium;
-    width: auto; 
+    width: auto;
     text-align: center;
     padding: 5px;
     margin: 5px 0;
@@ -34,13 +37,17 @@ body {
 .buttons {
     font-size: large;
     display: flex;
-    justify-content: center; /* Centers buttons horizontally */
-    gap: 10px; /* Adds space between buttons */
+    justify-content: center;
+    /* Centers buttons horizontally */
+    gap: 10px;
+    /* Adds space between buttons */
 }
 
 .buttons button {
-    flex: 1; /* Makes both buttons equal width */
-    max-width: 150px; /* Optional: Limit button width */
+    flex: 1;
+    /* Makes both buttons equal width */
+    max-width: 150px;
+    /* Optional: Limit button width */
     padding: 10px;
     border: none;
     border-radius: 5px;
@@ -58,24 +65,32 @@ body {
     list-style-type: none;
     padding: 0;
     width: 100%;
-    max-width: 600px; /* Adjust width as needed */
-    margin: 0 auto; /* Centers the entire list */
+    max-width: 600px;
+    /* Adjust width as needed */
+    margin: 0 auto;
+    /* Centers the entire list */
 }
 
 .food-item {
     display: flex;
-    justify-content: space-between; /* Ensures spacing between columns */
-    align-items: center; /* Centers content vertically */
+    justify-content: space-between;
+    /* Ensures spacing between columns */
+    align-items: center;
+    /* Centers content vertically */
     padding: 10px;
     background: #fff;
     border-bottom: 1px solid #ddd;
-    width: 90%; /* Adjust width for centering */
-    margin: 0 auto; /* Centers each row */
-    border-radius: 5px; /* Optional: Gives a softer look */
+    width: 90%;
+    /* Adjust width for centering */
+    margin: 0 auto;
+    /* Centers each row */
+    border-radius: 5px;
+    /* Optional: Gives a softer look */
 }
 
 .food-column {
-    flex: 1; /* Makes each column take equal space */
+    flex: 1;
+    /* Makes each column take equal space */
     text-align: left;
     padding: 5px;
 }
@@ -99,7 +114,8 @@ body {
 }
 
 .large-checkbox {
-    transform: scale(1.5); /* Makes checkbox larger */
+    transform: scale(1.5);
+    /* Makes checkbox larger */
     margin-left: 5px;
 }
 

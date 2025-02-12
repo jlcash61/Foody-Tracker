@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Foody Tracker</title>
-    
+
     <link rel="stylesheet" href="style.css">
     <script type="module" src="app.js"></script>
     <link rel="manifest" href="manifest.json">
@@ -12,6 +13,7 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/icons/favicon-16x16.png">
 </head>
+
 <body>
     <div id="login-view" class="view">
         <h1>Welcome to Foody Tracker</h1>
@@ -28,11 +30,11 @@
     <div id="food-input-view" class="view" style="display: none;">
         <h1>Track Your Food</h1>
         <p>Logged in as: <span id="user-email"></span></p>
-        
+
 
         <input type="text" id="restaurant" placeholder="Restaurant Name" list="restaurant-names">
         <datalist id="restaurant-names"></datalist>
-        
+
         <input type="text" id="food-name" placeholder="Food Name" list="food-names">
         <datalist id="food-names"></datalist>
         <br>
@@ -49,11 +51,11 @@
                 </select>
             </label>
         </div>
-        
+
         <button id="add-food">Add Food</button>
         <h2>Food List</h2>
-        
-        
+
+
         <label>Filter by Restaurant:
             <input type="text" id="restaurant-filter" list="restaurant-names">
         </label>
@@ -63,11 +65,15 @@
         </label>
         <button id="clear-filters">Clear Filters</button>
 
-        <ul id="food-list"></ul>
+        <div id="food-list-container" style="display: none;">
+            <ul id="food-list"></ul>
+        </div>
+        
 
         <div class="buttons">
             <button id="logout-btn-food">Logout</button>
         </div>
     </div>
 </body>
+
 </html>

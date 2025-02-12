@@ -35,6 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     function loadFoodList() {
+        const foodListContainer = document.getElementById("food-list-container"); // The wrapper div for food list
         const foodList = document.getElementById("food-list");
         const foodNamesList = document.getElementById("food-names");
         const restaurantNamesList = document.getElementById("restaurant-names");
@@ -43,6 +44,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const restaurantFilter = document.getElementById("restaurant-filter");
         const clearFiltersBtn = document.getElementById("clear-filters");
     
+        foodListContainer.style.display = "none"; // Hide initially
         foodList.innerHTML = "";
         foodNamesList.innerHTML = "";
         restaurantNamesList.innerHTML = "";
@@ -50,7 +52,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const foodCollection = collection(db, "users", auth.currentUser.uid, "foods");
     
         if (unsubscribeFoodList) {
-            unsubscribeFoodList(); 
+            unsubscribeFoodList();
         }
     
         unsubscribeFoodList = onSnapshot(foodCollection, (snapshot) => {
@@ -69,7 +71,6 @@ document.addEventListener("DOMContentLoaded", () => {
             foodNamesList.innerHTML = [...foodSet].map(name => `<option value="${name}">`).join("");
             restaurantNamesList.innerHTML = [...restaurantSet].map(restaurant => `<option value="${restaurant}">`).join("");
     
-            // Function to render sorted list based on user selection
             function renderFoodList() {
                 const selectedFood = foodFilter.value.trim();
                 const selectedRestaurant = restaurantFilter.value.trim();
@@ -84,23 +85,31 @@ document.addEventListener("DOMContentLoaded", () => {
                     filteredFood = filteredFood.filter(item => item.restaurant.toLowerCase() === selectedRestaurant.toLowerCase());
                 }
     
+                // If there's no filtering, keep the list hidden
+                if (!selectedFood && !selectedRestaurant) {
+                    foodListContainer.style.display = "none";
+                    return;
+                }
+    
+                // Show food list container when filters are applied
+                foodListContainer.style.display = "block";
+    
                 // Sort by rating (best to worst)
                 filteredFood.sort((a, b) => b.rating - a.rating);
     
                 // Display filtered and sorted food list
-foodList.innerHTML = "";
-filteredFood.forEach((food) => {
-    const li = document.createElement("li");
-    li.classList.add("food-item"); // Add class for styling
-    li.innerHTML = `
-        <div class="food-column restaurant">${food.restaurant}</div>
-        <div class="food-column name">${food.name}</div>
-        <div class="food-column liked">${food.liked ? "Liked" : "Disliked"}</div>
-        <div class="food-column rating">${food.rating} Stars</div>
-    `;
-    foodList.appendChild(li);
-});
-
+                foodList.innerHTML = "";
+                filteredFood.forEach((food) => {
+                    const li = document.createElement("li");
+                    li.classList.add("food-item");
+                    li.innerHTML = `
+                        <div class="food-column restaurant">${food.restaurant}</div>
+                        <div class="food-column name">${food.name}</div>
+                        <div class="food-column liked">${food.liked ? "Liked" : "Disliked"}</div>
+                        <div class="food-column rating">${food.rating} Stars</div>
+                    `;
+                    foodList.appendChild(li);
+                });
             }
     
             // Listen for changes in filters
@@ -109,17 +118,19 @@ filteredFood.forEach((food) => {
             clearFiltersBtn.addEventListener("click", () => {
                 foodFilter.value = "";
                 restaurantFilter.value = "";
+                foodListContainer.style.display = "none"; // Hide list again
                 renderFoodList();
             });
     
-            // Initial render
-            renderFoodList();
+            // Initial render (hidden by default)
+            foodListContainer.style.display = "none";
         });
     }
     
-    
-    
-    
+
+
+
+
     onAuthStateChanged(auth, (user) => {
         if (user) {
             welcomeMessage.innerText = `Welcome, ${user.email}!`;
@@ -138,19 +149,19 @@ filteredFood.forEach((food) => {
             showView("login");
         }
     });
-    
+
 
     document.getElementById("add-food").addEventListener("click", async () => {
         const name = document.getElementById("food-name").value;
         const restaurant = document.getElementById("restaurant").value;
         const liked = document.getElementById("like").checked;
         const rating = document.getElementById("rating").value;
-        
+
         if (!name || !restaurant) {
             alert("Please enter both food name and restaurant.");
             return;
         }
-    
+
         try {
             await addDoc(collection(db, "users", auth.currentUser.uid, "foods"), {
                 name,
@@ -168,8 +179,8 @@ filteredFood.forEach((food) => {
             alert("Error adding food: " + error.message);
         }
     });
-    
-    
+
+
 
     loginBtn.addEventListener("click", async () => {
         const email = document.getElementById("email").value;
@@ -213,7 +224,7 @@ filteredFood.forEach((food) => {
             alert("Logout failed: " + error.message);
         }
     });
-    
+
     logoutFoodBtn.addEventListener("click", async () => {
         try {
             if (unsubscribeFoodList) {
@@ -226,5 +237,5 @@ filteredFood.forEach((food) => {
             alert("Logout failed: " + error.message);
         }
     });
-    
+
 });
