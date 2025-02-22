@@ -196,7 +196,7 @@ body {
 
 .food-column.actions button {
     padding: 5px 10px;
-    margin-left: 5px;
+    margin: 5px;
     border: none;
     border-radius: 4px;
     cursor: pointer;

@@ -285,7 +285,7 @@ document.addEventListener("DOMContentLoaded", () => {
     function showToast(message, type = "success") {
         Toastify({
             text: message,
-            duration: 3000, // 3 seconds
+            duration: 2000, // 2 seconds
             close: true,
             gravity: "top", // Keeps toast at the top
             position: "center", // Center it properly
@@ -366,7 +366,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
         try {
             await signInWithEmailAndPassword(auth, email, password);
-            showToast("Login successful!");
+            //showToast("Login successful!");
         } catch (error) {
             showToast("Login failed: " + error.message);
         }
@@ -394,7 +394,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 unsubscribeFoodList = null;
             }
             await signOut(auth);
-            showToast("Logged out successfully!");
+            //showToast("Logged out successfully!");
         } catch (error) {
             showToast("Logout failed: " + error.message);
         }
@@ -407,7 +407,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 unsubscribeFoodList = null;
             }
             await signOut(auth);
-            showToast("Logged out successfully!");
+            //showToast("Logged out successfully!");
         } catch (error) {
             showToast("Logout failed: " + error.message);
         }
