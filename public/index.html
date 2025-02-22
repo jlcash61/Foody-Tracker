@@ -8,6 +8,7 @@
 
     <link rel="stylesheet" href="style.css">
     <script type="module" src="app.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
     <link rel="manifest" href="manifest.json">
     <link rel="apple-touch-icon" sizes="180x180" href="/icons/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/icons/favicon-32x32.png">
@@ -23,8 +24,11 @@
         <div class="buttons">
             <button id="login-btn">Login</button>
             <button id="register-btn">Register</button>
+
+            <button id="google-login-btn">Continue with Google</button>
+
+            <button id="logout-btn" style="display: none;">Log-out</button>
         </div>
-        <button id="logout-btn" style="display: none;">Log-out</button>
     </div>
 
     <div id="food-input-view" class="view" style="display: none;">
@@ -40,7 +44,7 @@
         <br>
 
         <div class="input-group">
-            
+
             <label>Rating:
                 <select id="rating" class="large-select">
                     <option value="0">Dislike</option>
@@ -54,7 +58,44 @@
         </div>
 
         <div class="buttons">
-        <button id="add-food">Add Food</button>
+            <button id="add-food">Add Food</button>
+        </div>
+
+        <!-- Edit Food Modal -->
+        <div id="editFoodModal" class="modal">
+            <div class="modal-content">
+                <span class="close">×</span>
+                <h2>Edit Food Item</h2>
+
+                <input type="hidden" id="edit-food-id" />
+                <input type="text" id="edit-restaurant" placeholder="Restaurant Name" list="restaurant-names">
+                <input type="text" id="edit-food-name" placeholder="Food Name" list="food-names">
+
+                <label for="edit-rating">Rating:</label>
+                <select id="edit-rating">
+                    <option value="0">Dislike</option>
+                    <option value="1">1 Star</option>
+                    <option value="2">2 Stars</option>
+                    <option value="3">3 Stars</option>
+                    <option value="4">4 Stars</option>
+                    <option value="5">5 Stars</option>
+                </select>
+
+                <button id="save-edit-btn">Save Changes</button>
+            </div>
+        </div>
+
+        <!-- Notes Modal -->
+        <div id="notesModal" class="modal">
+            <div class="modal-content">
+                <span class="close-notes">×</span>
+                <h2>Notes</h2>
+
+                <input type="hidden" id="notes-food-id" />
+                <h3>Adding notes to: <span id="notes-food-name"></span></h3>
+                <textarea id="food-notes" placeholder="Enter your notes here"></textarea>
+                <button id="save-notes-btn">Save Notes</button>
+            </div>
         </div>
         <h2>Food List</h2>
 
@@ -67,13 +108,13 @@
             <input type="text" id="food-filter" list="food-names">
         </label>
         <div class="buttons">
-        <button id="clear-filters">Clear Filters</button>
+            <button id="clear-filters">Clear Filters</button>
         </div>
 
         <div id="food-list-container" style="display: none;">
             <ul id="food-list"></ul>
         </div>
-        
+
 
         <div class="buttons">
             <button id="logout-btn-food">Logout</button>
